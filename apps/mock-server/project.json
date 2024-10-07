@@ -1,0 +1,56 @@
+{
+  "name": "mock-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/mock-server/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/mock-server",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "apps/mock-server/src/main.ts",
+        "tsConfig": "apps/mock-server/tsconfig.app.json",
+        "assets": ["apps/mock-server/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "mock-server:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mock-server:build:development"
+        },
+        "production": {
+          "buildTarget": "mock-server:build:production"
+        }
+      }
+    }
+  }
+}

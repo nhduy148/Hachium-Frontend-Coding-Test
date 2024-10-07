@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    {
+      "_id": "adn123-123-123-123",
+      "title": "Task 01",
+      "description": "Description 01",
+      "status": "incomplete",
+      "created_at": "2021-01-01T00:00:00.000Z",
+      "updated_at": "2021-01-01T00:00:00.000Z"
+    }
+  ]
+}
